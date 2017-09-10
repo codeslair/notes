@@ -1,0 +1,161 @@
+This project is based on https://github.com/MarkPieszak/aspnetcore-angular2-universal
+
+Adding language
+1. Add language json to src/SoftwareManHourManagementSystem/wwwroot/assets/i18n/[language].json
+2. Add language link to src/SoftwareManHourManagementSystem/Client/app/containers/home/home.component.html
+
+Adding new component
+1. Add navigation link Client\app\components\navmenu\navmenu.component.html
+2. Add folder component to Client\app\containers\[component-name]
+3. Add component typescript to Client\app\containers\[component-name]\[component-name].component.ts
+4. Add component html to Client\app\containers\[component-name]\[component-name].component.html
+5. Add component to app module Client\app\app.module.ts
+
+------------------------------------------
+[Angular]
+Angular cli root folder is defined in .angular-cli.json
+Modules and components root folder is app
+
+1. ng g c folder1/folder2/component-name
+   Creates a component in a folder.
+   g - generate
+   c - component
+   
+   Note: This project does not support angular/cli yet. ref #https://github.com/MarkPieszak/aspnetcore-angular2-universal/issues/117
+
+2. Module vs Components
+Components control views (html). They also communicate with other components and services to bring functionality to your app.
+
+Modules consist of one or more components. They do not control any html. Your modules declare which components can be used by components belonging to other modules, which classes will be injected by the dependency injector and which component gets bootstrapped. Modules allow you to manage your components to bring modularity to your app. ref#https://stackoverflow.com/questions/40073941/whats-the-difference-between-an-angular-component-and-module
+
+
+
+Module and Component have hardly anything in common, except that they are classes with decorators and providers can registered with them.
+
+A component is a visible part of your application with optional behavior (event handlers)
+
+Modules were introduced to split your application for lazy loading.
+
+    SubModule is usually a set of services, components, directives, and pipes that build together a reusable feature. By adding a module to imports: [...] of another module, all its content is made available to the importing module.
+
+    SubComponent is not really a term in Angular2. There are just components. One special component is the root component. The difference is that the root component is created by bootstrapping an Angular2 application, while other components are created because their selector matches HTML in the view of another component.
+
+Therefor, except of the root component all components are subcomponents.
+ref#https://stackoverflow.com/questions/40805237/angular2-module-and-component-difference
+
+3. Build and test
+ng serve --> npm start
+ng build --> npm run build
+ng e2e   --> npm run e2
+-----------------------------------------
+Git usefull commands
+1. git show --pretty="" --name-only [commit id]
+	list all the files in a commit
+2. git diff --cached [filename]
+	show difference of staged file from the last commit
+	*remove --cached if not yet staged
+3. Adding local repo to master #ref https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+   3.1. Create a new repository on GitHub. To avoid errors, do not initialize the new repository with README, license, or gitignore files. You can add these files after your project has been pushed to GitHub.
+   3.2. Open Git Bash.
+   3.3. Change the current working directory to your local project.
+   3.4. Initialize the local directory as a Git repository.
+		git init
+   3.5. Add the files in your new local repository. This stages them for the first commit.
+		git add .
+   3.6. Commit the files that you've staged in your local repository.
+		git commit -m "First commit"
+   3.7. At the top of your GitHub repository's Quick Setup page, copy the remote repository URL. 
+   3.8. In the Command prompt, add the URL for the remote repository where your local repository will be pushed.
+		git remote add origin [remote repository URL]
+		git remote -v
+			*To verify the new remore URL
+   3.9. Push the changes in your local repository to GitHub.
+		git push origin master
+			*Pushes the changes in your local repository up to the remote repository you specified as the origin
+4. Updating a local repository with changes from a Github repository
+	git pull origin master
+
+5. Remove uncommitted changes
+	Tracked files: git checkout -f
+		*Undo any changes on tracked files
+	Untracked files: git clean -fd
+		*Remove any untracked files
+
+6. Merge last two commits
+	git rebase --interactive HEAD~2
+	pick then squash
+		*squash the last commit
+7. Merge branch to master
+	(on branch development)$ git merge master
+	(resolve any merge conflicts if there are any)
+	git checkout master
+	git merge development (there won't be any conflicts now)
+8. Compare with previous commit
+	git diff HEAD^ [path to file]
+9. Compare with specific commit
+	git diff [commit id] [path to file]
+10. Temporarily save task without pushing to branch(stash)
+	git stash
+	git stash -u
+		*stash including untracked
+11. Remove all stashes
+	git stash clear
+11. Remove specific stash
+	git stash drop stash@{n} where n: stash index(git stash list)
+------------------------------------------
+Adding Angular Material
+1. npm install --save @angular/material
+
+ng -v
+npm uninstall -g @angular/cli
+npm cache clean
+npm install -g @angular/cli@latest
+
+2. Update packages in a project
+npm i -g npm-check-updates
+npm-check-updates -a --packageFile package.json
+------------------------------------------
+[SPA Templates]
+dotnet new --install Microsoft.AspNetCore.SpaTemplates::*
+------------------------------------------
+.gitignore #ref https://github.com/github/gitignore
+------------------------------------------
+dotnet cli
+
+1. Run angular after dotnet build command
+	Add to project file:
+  <Target Name="AngularBuild" AfterTargets="Build">
+    <Exec Command="ng build" />
+  </Target>
+2. Execute Entity Framework cli from dotnet cli
+	Add to project file:
+	<ItemGroup>
+		<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+	</ItemGroup>
+3. Add dotnet watch
+	<ItemGroup>
+		<DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+	</ItemGroup>
+4. Enable Code Generator
+	dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+5. Adding Controller
+	dotnet aspnet-codegenerator --help
+	dotnet aspnet-codegenerator controller --help
+	dotnet aspnet-codegenerator -p . controller -name [NameController] -outDir [path] -namespace [Namespace] -api
+		dotnet aspnet-codegenerator --project . controller -name AccountsController -outDir Server/Controllers -namespace smms.Controllers -api
+6. EntityFrameworkCore migration
+	dotnet ef migrations add [Remarks] -o [Path to Migrations]
+		dotnet ef migrations add CreateAppUserDb -o Server/Migrations
+------------------------------------------
+Connection String
+< 2016
+@"Server=DESKTOP-RU6NHSI;initial catalog=DbNameHere;Integrated Security=False;user id=sa;password=dbadmin00;MultipleActiveResultSets=True;"
+
+=2016
+@"Server=DESKTOP-RU6NHSI;Database=DbNameHere;User Id=sa;Password=dbadmin00;"
+Note: Call Database.EnsureCreated(); in the DbContext constructor
+
+"DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=SmmsDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+------------------------------------------
+
+
