@@ -100,8 +100,10 @@ Git usefull commands
 		*stash including untracked
 11. Remove all stashes
 	git stash clear
-11. Remove specific stash
+12. Remove specific stash
 	git stash drop stash@{n} where n: stash index(git stash list)
+13. Remove changes in file from latest commit
+	git checkout -- path/to/the/file.txt
 ------------------------------------------
 Adding Angular Material
 1. npm install --save @angular/material
