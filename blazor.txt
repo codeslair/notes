@@ -1,1 +1,8 @@
 blazor
+
+1. What is _ViewImports.cshtml?
+  _ViewImports.cshtml serves one major purpose: to provide namespaces which can be used by all other views.
+
+2. What is "@Page"
+  Every Razor page has an @Page directive which indicates that this is not normal MVC Razor View but it is a Razor Page. 
+  ref: https://dzone.com/articles/aspnet-razor-pages-vs-mvc-how-do-razor-pages-fit-i
