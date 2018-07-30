@@ -1,0 +1,13 @@
+1. Common
+2. Store.Core
+   IUserInfo
+   UserInfo
+   [Entity]
+     IEntity
+     IAuditableEntity
+     [Dbo]
+       *
+     [HumanResources]
+       *
+     [Production]
+       *

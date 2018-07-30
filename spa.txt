@@ -104,6 +104,17 @@ Git usefull commands
 	git stash drop stash@{n} where n: stash index(git stash list)
 13. Remove changes in file from latest commit
 	git checkout -- path/to/the/file.txt
+14. Git settings
+15. Get remote URL
+    git config --get remote.origin.url
+16. How to add a file to the last commit
+    git add the_left_out_file
+    git commit --amend --no-edit
+17. Show last committed files
+    git log --name-only -1
+18. Checkout specific branch
+    git clone -b [branch] [url]
+
 ------------------------------------------
 Adding Angular Material
 1. npm install --save @angular/material

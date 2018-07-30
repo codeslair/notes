@@ -1,0 +1,12 @@
+1. In code I can do this:
+    this.DataContext = this;
+    (I use it for binding to local clr-properties)
+    How can I do that in xaml?
+
+    you can give a x:Name to the root(Window) and use that in the binding
+    DataContext="{Binding ElementName=window1}"
+    
+    You can also use a Binding with RelativeSource.  For example, this TextBox's background is specified by whatever you type into it:
+    <TextBox
+         DataContext="{Binding RelativeSource={RelativeSource Self}}"
+         Background="{Binding Path=Text}" />
