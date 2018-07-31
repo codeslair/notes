@@ -1,0 +1,46 @@
+1. Setting of Proxy (Docker Toolbox for Windows 7)
+  C:\Program Files\Docker Toolbox\start.sh
+  Insert from line 14:
+
+  # This is to set proxy settings
+  export http_proxy="http://Username:Password@202.15.153.251:8080/"
+  export https_proxy="http://Username:Password@202.15.153.251:8080/"
+  
+  [NOT TRIED]
+  docker-machine create -d virtualbox \
+    --engine-env HTTP_PROXY=http://example.com:8080 \
+    --engine-env HTTPS_PROXY=https://example.com:8080 \
+    --engine-env NO_PROXY=example2.com \
+    default
+  ref: https://github.com/docker/toolbox/issues/102
+
+2. List Docker Images
+  docker image ls
+
+3. Get Docker IP
+  docker-machine ip default
+
+4. How to create a app for docker. (Docker/Docker Toolbox is installed).
+  4.1. Create a normal app.
+       >dotnet new console -o ConsoleApp
+  4.2. Create a "Dockerfile".
+       FROM microsoft/dotnet:2.1-sdk as Build
+       WORKDIR /app
+
+       # copy csproj and restore as distinct layers
+       COPY *.csproj ./
+       RUN dotnet restore
+
+       # copy and build everything else
+       COPY . ./
+       RUN dotnet publish -c Release -o out
+       ENTRYPOINT ["dotnet", "out/ConsoleApp.dll"]
+  4.3. Execute build
+       >docker build -t consoleapp .
+        *consoleapp - name of the image
+  4.4. Execute the image
+       >docker run consoleapp
+        *>docker images - to see the list of images
+
+5. Show images/containers
+  >docker ps -a

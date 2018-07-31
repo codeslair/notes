@@ -1,0 +1,73 @@
+1. Load Prism modules from dll files (at startup)
+protected override void ConfigureModuleCatalog()
+{
+    string path = @"libs\FooLib.dll";
+    var assembly = Assembly.LoadFrom(path);
+    var type = assembly.GetType("FooLib.FooModule");
+    ModuleCatalog.AddModule(new ModuleInfo
+                                {
+                                    ModuleName = type.Name,
+                                    ModuleType = type.AssemblyQualifiedName,
+                                    Ref = new Uri(path, UriKind.RelativeOrAbsolute).AbsoluteUri
+                                });
+}
+
+UserControl myControl = null;    
+Assembly asm = Assembly.LoadFile(Your dll path);
+Type[] tlist = asm.GetTypes();
+foreach (Type t in tlist)
+{
+ if(t.Name == "Your class name" )
+ {
+    myControl = Activator.CreateInstance(t) as UserControl;
+    break;
+ }
+}
+
+ref:https://stackoverflow.com/questions/9973546/load-prism-modules-from-dll-files-at-startup
+
+
+
+ref: https://stackoverflow.com/questions/10096166/prism-using-mvvm-how-to-resolve-or-inject-in-a-constructor-objects
+You can register all your types in the bootstrapper when you load the modules.
+
+// register all modules
+protected override void ConfigureModuleCatalog()
+{
+    // get all module types
+    var types = new List<Type>();
+    types.Add(typeof(ModuleA));
+    types.Add(typeof(ModuleB));
+    types.Add(typeof(ModuleC));
+
+    // register all types
+    foreach (var type in types)
+    {
+        ModuleCatalog.AddModule(new ModuleInfo()
+        {
+            ModuleName = type.Name,
+            ModuleType = type.AssemblyQualifiedName
+        });
+    }
+}
+
+Then in ConfigureContainer you map all the types and/or instances you want to access later on. The configured container is passed into your constructor for Module1Module.
+
+// register all types in all modules
+protected override void ConfigureContainer()
+{
+    base.ConfigureContainer();
+
+    // ModuleA
+    Container.RegisterType<IInterface1, Type1>();
+    Container.RegisterType<IInterface2, Type2>();
+
+    // ModuleB
+    Container.RegisterInstance<IInterface3>("name", new Type3());
+    Container.RegisterType<IInterface4, Type4>();
+
+    // ModuleC
+    Container.RegisterType<IInterface5, Type5>();
+    Container.RegisterType<IInterface6, Type6>();
+}
+
