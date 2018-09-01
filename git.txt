@@ -24,13 +24,11 @@ Git usefull commands
             *Pushes the changes in your local repository up to the remote repository you specified as the origin
 4. Updating a local repository with changes from a Github repository
     git pull origin master
-
 5. Remove uncommitted changes
     Tracked files: git checkout -f
         *Undo any changes on tracked files
     Untracked files: git clean -fd
         *Remove any untracked files
-
 6. Merge last two commits
     git rebase --interactive HEAD~2
     pick then squash
@@ -70,3 +68,5 @@ Git usefull commands
 
     git config --global credential.helper 'cache --timeout=3600'
     # Set the cache to timeout after 1 hour (setting is in seconds)
+20. Check if there are changes to push
+    git diff --stat --cached [remote/branch]
