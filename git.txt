@@ -74,3 +74,7 @@ Git usefull commands
     git status -uno
 22. Show what would be done, without making any changes.
     git fetch --dry-run
+23. Pushing code to two remotes
+    git remote set-url origin --push --add <a remote>
+    git remote set-url origin --push --add <another remote>
+    So when you push to origin, it will push to both repositories.
