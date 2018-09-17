@@ -78,3 +78,8 @@ Git usefull commands
     git remote set-url origin --push --add <a remote>
     git remote set-url origin --push --add <another remote>
     So when you push to origin, it will push to both repositories.
+24. Setting proxy
+    git config --global http.proxy "Proxy here"
+    git config --global http.proxy http://F500050284:password@202.15.153.251:8080/
+    
+    to unset: git config --global --unset http.proxy
