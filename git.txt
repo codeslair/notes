@@ -83,3 +83,37 @@ Git usefull commands
     git config --global http.proxy http://F500050284:password@202.15.153.251:8080/
     
     to unset: git config --global --unset http.proxy
+25. Determine the remote url
+    git config --get remote.origin.url
+27. Fork a repo. Note: There is no such thing as fork a branch.
+    27.1. Navigate to a repository
+    27.2. In the top-right corner of the page, click Fork.
+28. Configure Git to sync your fork with the original(upstream) repository
+    28.1. Clone Forked Repo
+    28.2. Check the configured remote repository
+          #git remote -v
+    28.3. Add upstream repository
+          #git remote add upstream [Original/upstream url]
+29. Pull Request
+    Create a pull request to propose and collaborate on changes to a repository.
+    These changes are proposed in a branch, which ensures that the master branch only contains finished and approved work.
+    29.1. Choose the branch that contains your commits. 
+    29.2. To the right of the Branch menu, click New pull request. 
+    29.3. Use the base branch dropdown menu to select the branch you'd like to merge your changes into,
+          then use the compare branch drop-down menu to choose the topic branch you made your changes in. 
+    29.4. Type a title and description for your pull request.
+    29.5. Click Create pull request.
+30. Clone with username and password
+    git clone https://username:password@github.com/username/repository.git
+
+    You can leave out the password so that it won't be logged your bash history file:
+    git clone https://username@github.com/username/repository.git
+31. Cloning locally hosted git. Do not use proxy
+    [No Proxy]
+    git clone <addr of repo> --config http.proxy=
+    git clone http://itmserv:3000/ITM-Department/ItmSolution.git --config http.proxy=
+
+    [No Proxy and SSL]
+    git clone <addr of repo> --config http.proxy= --config http.sslVerify=false
+    git clone http://itmserv:3000/ITM-Department/ItmSolution.git --config http.proxy= --config http.sslVerify=false
+
