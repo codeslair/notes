@@ -1,0 +1,14 @@
+1. file string from first occurrence of \ (backlash) to the end of the line
+   [\\].*$
+   
+   \\ becomes \ (the first \ is escape char)
+   .* means "any character, repeated 0 or more times".
+
+2. Find count of characters from the end
+   .{3}$ - 3 characters from the end
+   .{3,5}$ - minimum of 3 characters to match; 5 is max. 3-5 characters from the end will match
+
+
+Sample:
+   [12]\d{3}-[01]\d-[0-3]\d (.*)\[(.*)\]:.*
+   2014-08-26 app[web.1]: 50.0.134.125 - - [26/Aug/2014 00:27:41] "GET / HTTP/1.1" 200 14 0.0005

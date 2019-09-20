@@ -1,0 +1,16 @@
+1. Create dir
+   svn mkdir URL...
+
+   svn mkdir -m "Making a new dir." http://path.to.svn/repos/newdir
+
+2. Checkout
+   svn checkout http://path.to.svn/repos/branch newproject --force
+
+3. Add 
+   svn add --force .
+
+4. Revert recursively from current folder to subfolders
+   svn revert --recursive .
+
+5. Revert specific file
+   svn revert foo.c

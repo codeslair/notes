@@ -1,0 +1,74 @@
+Entity Framework FAQs
+
+
+1. How to get id of a inserted entity in Entity Framework? 
+ 
+ The DB generated Id properties will be automatically populated when you call SaveChanges() method.
+
+ For example,
+  
+using(var context = new SchoolContext())
+ {             
+      var std = new Student(){ StudentName = "Steve" };
+      context.Add(std);
+      context.SaveChanges();
+                
+      Console.Write($"Id= {std.StudentID}");
+  }
+  
+ EF execute each INSERT command followed by SELECT scope_identity() statement. SCOPE_IDENTITY returns the last identity value inserted into an identity column in the same scope. The above example will execute the following SQL in the database.
+
+SET NOCOUNT ON;
+ INSERT INTO [Students] ([DateOfBirth], [GradeId], [Height], [StudentName], [Weight])
+ VALUES (@p0, @p1, @p2, @p3, @p4);
+ SELECT [StudentID]
+ FROM [Students]
+ WHERE @@ROWCOUNT = 1 AND [StudentID] = scope_identity();
+ ',N'@p0 datetime2(7),@p1 int,@p2 decimal(1,0),@p3 nvarchar(4000),@p4 real',@p0=NULL,@p1=NULL,@p2=0,@p3=N'steve',@p4=0
+
+
+2. How to disable DB generated value for Id property in EF Core and EF 6?
+
+Use DatabaseGenerate data annotations attribute as shown below.
+  
+[DatabaseGenerated( DatabaseGeneratedOption.None)]
+public int StudentId { get; set; }
+  
+ This will not make StudentId column as autoincrement identity column. You will have to provide value before calling SaveChanges().
+  
+ Or, using Fluent API.
+  
+modelBuilder.Entity<Student>()
+     .Property(s => s.StudentId)
+     .ValueGeneratedNever();
+  
+3. How to get the PrimaryKey property names of an entity in EF Core? 
+
+ Use DbContext.Model object to find primary key properties names of an entity. The following example displays the Key properties of the Student entity.
+  
+var context = new SchoolContext();
+  
+foreach (var key in context.Model.FindEntityType(typeof(Student)).GetKeys())
+ {
+      foreach (var prop in key.Properties)
+      {
+            if(prop.IsPrimaryKey())
+               Console.WriteLine(prop.Name);
+      }
+ }
+  
+   
+4. How to check whether the PrimaryKey properties of an entity object have been assigned values in EF Core? 
+ 
+ Use the IsKeySet property of an EntityEntry<TEntity>. The IsKeySet returns true if all the key properties of an entity contain valid values otherwise returns false.
+
+var context = new SchoolContext(); 
+var std = new Student() { StudentName = "steve" };
+ context.Entry<Student>(std).IsKeySet; // returns false
+
+ context.Students.Add(std);
+ context.SaveChanges(); 
+
+//here, Id property, StudentId will have a valid value 
+ context.Entry<Student>(std).IsKeySet; // returns true
+  

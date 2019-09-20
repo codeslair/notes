@@ -81,7 +81,7 @@ Git usefull commands
 24. Setting proxy
     git config --global http.proxy "Proxy here"
     git config --global http.proxy http://F500050284:password@202.15.153.251:8080/
-    
+
     to unset: git config --global --unset http.proxy
 25. Determine the remote url
     git config --get remote.origin.url
@@ -116,4 +116,5 @@ Git usefull commands
     [No Proxy and SSL]
     git clone <addr of repo> --config http.proxy= --config http.sslVerify=false
     git clone http://itmserv:3000/ITM-Department/ItmSolution.git --config http.proxy= --config http.sslVerify=false
-
+32. Visual Studio ignore file
+    https://github.com/github/gitignore/blob/master/VisualStudio.gitignore

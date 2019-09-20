@@ -1,0 +1,4 @@
+1. Show the current active version
+   dotnet --version
+2. Show all installed versions 
+   dotnet --info
