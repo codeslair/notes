@@ -1,0 +1,26 @@
+1. login
+SQLCMD -S server_name\instance_name
+
+sqlcmd -S ITM13AB\SQLEXPRESS
+
+2. check what version is installed
+select @@version
+go
+
+3. Connection String
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=ITM13AB\\SQLEXPRESS;Initial Catalog=DbNameHere;Trusted_Connection=True;"
+  }
+}
+
+Data Source=ITM13AB\SQLEXPRESS;Initial Catalog=SlairDb;Trusted_Connection=True;
+
+[.net Core]
+Server=ITM13AB\SQLEXPRESS;Database=SlairDb;Trusted_Connection=True;
+
+4. Check local DB instance_name
+SqlLocalDb info
+
+5. Local DB Instance
+(localDb)\MSSQLLocalDB
