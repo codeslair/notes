@@ -118,3 +118,16 @@ Git usefull commands
     git clone http://itmserv:3000/ITM-Department/ItmSolution.git --config http.proxy= --config http.sslVerify=false
 32. Visual Studio ignore file
     https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
+33. Compare diff between file in local repo and origin
+    git diff origin/master -- [loca path]
+
+    To view the differences going from the remote file to the local file:
+        git diff remotename/branchname:remote/path/file1.txt local/path/file1.txt
+
+    To view the differences in the other direction:
+        git diff HEAD:local/path/file1.txt remotename/branchname:remote/path/file1.txt
+
+    Basically you can diff any two files anywhere using this notation:
+        git diff ref1:path/to/file1 ref2:path/to/file2
+
+    As usual, ref1 and ref2 could be branch names, remotename/branchname, commit SHAs, etc.
