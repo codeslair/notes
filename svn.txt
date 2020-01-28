@@ -14,3 +14,6 @@
 
 5. Revert specific file
    svn revert foo.c
+
+6. svn list of files that are modified in local copy
+   svn status | findstr "^M"
