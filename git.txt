@@ -33,6 +33,26 @@ Git usefull commands
     git rebase --interactive HEAD~2
     pick then squash
         *squash the last commit
+
+    Merge two commits:
+       (6)18dc8aa (HEAD -> Chapter3) Chapter3-Replace shopping basket with component. (page 78)
+       (5)bff154a Chapter3-Set button class and button title based on parameter
+       (4)420983d Chapter3-Replace menu with component. Introduce "StateHasChanged". (page 76)
+       (3)1e95b39 (master) Chapter 2: Data and Event Binding
+       (2)fc87c04 Add project files.
+       (1)ba51d21 Add .gitignore and .gitattributes.
+
+        How to merge (4) and (5) by deleting 5
+        6.1. git log --oneline
+        6.2. git rebase -i 1e95b39 *It should be (3). Before (4)
+        6.3. Change
+                pick 420983d Chapter3-Replace menu with component. Introduce "StateHasChanged". (page 76)
+                pick bff154a Chapter3-Set button class and button title based on parameter
+                pick 18dc8aa Chapter3-Replace shopping basket with component. (page 78)
+
+                pick 420983d Chapter3-Replace menu with component. Introduce "StateHasChanged". (page 76)
+                squash bff154a Chapter3-Set button class and button title based on parameter
+                pick 18dc8aa Chapter3-Replace shopping basket with component. (page 78)
 7. Merge branch to master
     (on branch development)$ git merge master
     (resolve any merge conflicts if there are any)
@@ -133,6 +153,9 @@ Git usefull commands
     As usual, ref1 and ref2 could be branch names, remotename/branchname, commit SHAs, etc.
 34. Rename a branch
     git branch -m oldname newname
+
+    If you are on the branch you want to rename:
+    git branch -m new-name
 35. branch naming
     https://stackoverflow.com/questions/273695/what-are-some-examples-of-commonly-used-practices-for-naming-git-branches
 
@@ -145,3 +168,10 @@ Git usefull commands
 36. Get last update
     git show -1 --stat  
     This git command shows the latest changes commits time and date with message
+37. Show affected files of commit
+    git log --name-only --oneline
+38. Edit log message of the last commit
+    git commit --amend -m "an updated commit message"
+39. Merge all changes from another branch as a single commit
+    git merge --squash <feature branch>
+    git commit -m "<message>"
