@@ -20,11 +20,11 @@
 3. Get Docker IP
   docker-machine ip default
 
-4. How to create a app for docker. (Docker/Docker Toolbox is installed).
-  4.1. Create a normal app.
+4. How to create an app for docker. (Docker/Docker Toolbox is installed).
+  4.1. Create a normal app
        >dotnet new console -o ConsoleApp
-  4.2. Create a "Dockerfile".
-       FROM microsoft/dotnet:2.1-sdk as Build
+  4.2. Create a "Dockerfile"  FROM {image}. To check for local images execute "docker image ls"
+       FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as Build
        WORKDIR /app
 
        # copy csproj and restore as distinct layers
@@ -44,3 +44,5 @@
 
 5. Show images/containers
   >docker ps -a
+
+6. Creating docker from existing project
