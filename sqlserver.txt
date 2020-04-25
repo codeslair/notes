@@ -24,3 +24,6 @@ SqlLocalDb info
 
 5. Local DB Instance
 (localDb)\MSSQLLocalDB
+
+6. Check if SQL server (any version) is installed?
+sc queryex type= service | find "MSSQL"
