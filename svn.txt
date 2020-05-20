@@ -6,7 +6,7 @@
 2. Checkout
    svn checkout http://path.to.svn/repos/branch newproject --force
 
-3. Add 
+3. Add new files/folder
    svn add --force .
 
 4. Revert recursively from current folder to subfolders
@@ -17,3 +17,35 @@
 
 6. svn list of files that are modified in local copy
    svn status | findstr "^M"
+
+7. Commit
+   svn cleanup  /path/to/your/project
+
+   svn add --force /path/to/your/project/*
+
+   svn cleanup  /path/to/your/project
+
+   svn commit /path/to/your/project  -m 'Adding a file'
+
+8. Copy from one repo to new repo
+   svn cp "source path" "{destination path}" -m "{Message here}" --username {username} --password {password}
+   
+   Note: 7.1. Cannot create a sub folder {destination path}/[new folder]
+         7.2. Can create 1 level folder only
+
+svn co svn://202.15.150.70/system1/600_HARBEST/NEXTIHS/Development/branches/v25.0.0.2
+
+svn mkdir svn://192.168.19.15/HBS/Programs/branches/25.0.0.XX-MAINT-SIS -m "(Base)Create this folder for 25.0.0.2 version from SIS SVN..." --username admin --password Svn@dmin00
+
+svn co svn://192.168.19.15/HBS/Programs/branches/25.0.0.XX-MAINT-SIS
+
+svn add --force .
+
+svn commit -m "Base)Merge 24.2.0.1 version from SIS SVN..." --username admin --password Svn@dmin00
+
+[It will automatically create the target repo folder.]
+svn cp "svn://192.168.19.15/HBS/Programs/branches/24.2.0.XX-MAINT-SIS" "svn://192.168.19.15/HBS/Programs/branches/IdSymbol" -m "Copied from 24.2.0.XX-MAINT-SIS v24.2.0.1" --username admin --password Svn@dmin00
+
+
+"C:\Program Files\7-Zip\7z.exe" a -sfx7z.sfx "C:\SWS\DEVenv_24.2.0.1_20200515.exe" "C:\SWS\DEVenv_24.2.0.1_20200515" 
+
