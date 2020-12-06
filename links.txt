@@ -1,2 +1,5 @@
 RDMS ER Diagram
 https://www.guru99.com/er-diagram-tutorial-dbms.html
+
+EF Core
+https://www.entityframeworktutorial.net/efcore/one-to-many-conventions-entity-framework-core.aspx
