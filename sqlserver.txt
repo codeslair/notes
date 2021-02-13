@@ -22,6 +22,18 @@ Server=ITM13AB\SQLEXPRESS;Database=SlairDb;Trusted_Connection=True;
 4. Check local DB instance_name
 SqlLocalDb info
 
+//list the instancies
+sqllocaldb i
+
+//stop selected instance
+sqllocaldb p "selected instance"
+
+//delete
+sqllocaldb d "selected instance"
+
+//recreate or create new one 
+sqllocaldb c "new instance"
+
 5. Local DB Instance
 (localDb)\MSSQLLocalDB
 
