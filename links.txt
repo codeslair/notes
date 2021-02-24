@@ -1,5 +1,8 @@
-RDMS ER Diagram
+1. RDMS ER Diagram
 https://www.guru99.com/er-diagram-tutorial-dbms.html
 
 EF Core
 https://www.entityframeworktutorial.net/efcore/one-to-many-conventions-entity-framework-core.aspx
+
+2. SyleCop Console(classic)
+https://github.com/Nylle/StyleCop.Console
