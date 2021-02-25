@@ -6,3 +6,6 @@ https://www.entityframeworktutorial.net/efcore/one-to-many-conventions-entity-fr
 
 2. SyleCop Console(classic)
 https://github.com/Nylle/StyleCop.Console
+
+3. Extend Visual Studio
+https://github.com/microsoft/VSSDK-Extensibility-Samples
