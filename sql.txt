@@ -1,3 +1,4 @@
+https://code.tutsplus.com/articles/sql-for-beginners-part-3-database-relationships--net-8561
 https://stackoverflow.com/questions/7296846/how-to-implement-one-to-one-one-to-many-and-many-to-many-relationships-while-de
 
 One-to-one: Use a foreign key to the referenced table:
@@ -8,6 +9,7 @@ address: address_id, address, city, zipcode, student_id # you can have a
 You must also put a unique constraint on the foreign key column (addess.student_id) to prevent multiple rows in the child table (address) from relating to the same row in the referenced table (student).
 
 One-to-many: Use a foreign key on the many side of the relationship linking back to the "one" side:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 teachers: teacher_id, first_name, last_name # the "one" side
 classes:  class_id, class_name, teacher_id  # the "many" side
@@ -118,3 +120,33 @@ CREATE TABLE ClassStudentRelation(
     FOREIGN KEY (ClassID) REFERENCES Class(ClassID),
     UNIQUE (StudentID, ClassID)
 );
+------------------------------------------------------------------------
+One-to-Many: One Person Has Many Skills, a Skill is not reused between Person(s)
+
+Unidirectional: A Person can directly reference Skills via its Set
+Bidirectional: Each "child" Skill has a single pointer back up to the Person (which is not shown in your code)
+Many-to-Many: One Person Has Many Skills, a Skill is reused between Person(s)
+
+Unidirectional: A Person can directly reference Skills via its Set
+Bidirectional: A Skill has a Set of Person(s) which relate to it.
+In a One-To-Many relationship, one object is the "parent" and one is the "child". The parent controls the existence of the child. In a Many-To-Many, the existence of either type is dependent on something outside the both of them (in the larger application context).
+
+Your subject matter (domain) should dictate whether or not the relationship is One-To-Many or Many-To-Many -- however, I find that making the relationship unidirectional or bidirectional is an engineering decision that trades off memory, processing, performance, etc.
+
+What can be confusing is that a Many-To-Many Bidirectional relationship does not need to be symmetric! That is, a bunch of People could point to a skill, but the skill need not relate back to just those people. Typically it would, but such symmetry is not a requirement. Take love, for example -- it is bi-directional ("I-Love", "Loves-Me"), but often asymmetric ("I love her, but she doesn't love me")!
+-------------------------------------------------------------
+The difference between One-to-many, Many-to-one and Many-to-Many is:
+
+One-to-many vs Many-to-one is a matter of perspective. Unidirectional vs Bidirectional will not affect the mapping but will make difference on how you can access your data.
+
+In Many-to-one the many side will keep reference of the one side. A good example is "A State has Cities". In this case State is the one side and City is the many side. There will be a column state_id in the table cities.
+In unidirectional, Person class will have List<Skill> skills but Skill will not have Person person. In bidirectional, both properties are added and it allows you to access a Person given a skill( i.e. skill.person).
+
+In One-to-Many the one side will be our point of reference. For example, "A User has Addresses". In this case we might have three columns address_1_id, address_2_id and address_3_id or a look up table with multi column unique constraint on user_id on address_id.
+In unidirectional, a User will have Address address. Bidirectional will have an additional List<User> users in the Address class.
+
+In Many-to-Many members of each party can hold reference to arbitrary number of members of the other party. To achieve this a look up table is used. Example for this is the relationship between doctors and patients. A doctor can have many patients and vice versa.
+
+---------------------------------------------------------------
+Planning a relational database
+https://fmhelp.filemaker.com/help/18/fmp/en/index.html#page/FMP_Help%2Fplanning-databases.html%23ww1160750
