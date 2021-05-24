@@ -1,0 +1,30 @@
+1. Past Perfect and Present Perfect Tenses 
+
+https://www.learnersdictionary.com/qa/Past-Perfect-and-Present-Perfect-Tenses#:~:text=The%20present%20perfect%20tense%20says,the%20action%20are%20relevant%20now.&text=The%20past%20perfect%20tense%20says,action%20happened%20in%20the%20past.
+
+Question
+What is the difference between present perfect and past perfect?
+
+Answer
+The present perfect tense says that an action was completed at a time before the present,
+and the results or consequences of the action are relevant now.
+The present perfect is formed using the present tense of the verb "to have" and the past participle of the main verb.
+
+The past perfect tense says that an action was completed at a time before another action happened in the past.
+The past perfect is formed using the past tense of the verb "to have" and the past participle of the main verb.
+
+Let's use a timeline to look at how the present perfect and the past perfect relate to one another.
+Point A will be the action of the kids eating dinner. Point B will be when the nanny goes home.
+Point C will be now, the present. We are always speaking from point C.
+
+past ←----------A----------B----------C----------→ present
+
+Present perfect: The kids have eaten dinner. [They ate dinner at point A, it is point C now.
+Note: For the present perfect, point B does not need to exist. A and C are the only points that matter.]
+
+Past perfect: The kids had eaten dinner before the nanny went home.
+[The kids ate dinner at point A, the nanny went home at point B, it is point C now.]
+
+The difference is that in the present perfect example,
+the result of A is that the kids do not need to eat now, at point C, 
+but in the past perfect example, the result of A is that at point B, no one needed to prepare dinner for the kids.
