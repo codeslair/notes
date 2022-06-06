@@ -9,7 +9,8 @@
 3. Add new files/folder
    svn add --force .
 
-4. Revert recursively from current folder to subfolders
+4. Reset working copy. Revert recursively from current folder to subfolders.
+   Does not remove untracked files/folders.
    svn revert --recursive .
 
 5. Revert specific file
@@ -32,6 +33,11 @@
    
    Note: 7.1. Cannot create a sub folder {destination path}/[new folder]
          7.2. Can create 1 level folder only
+
+9. Remove untracked files in SVN
+   svn cleanup . --remove-unversioned
+
+
 
 svn co svn://202.15.150.70/system1/600_HARBEST/NEXTIHS/Development/branches/v25.1.0.0
 

@@ -72,3 +72,5 @@ var std = new Student() { StudentName = "steve" };
 //here, Id property, StudentId will have a valid value 
  context.Entry<Student>(std).IsKeySet; // returns true
   
+5. EF Relationships
+https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key
