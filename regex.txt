@@ -12,3 +12,21 @@
 Sample:
    [12]\d{3}-[01]\d-[0-3]\d (.*)\[(.*)\]:.*
    2014-08-26 app[web.1]: 50.0.134.125 - - [26/Aug/2014 00:27:41] "GET / HTTP/1.1" 200 14 0.0005
+
+https://www.technical-recipes.com/2020/using-regex-to-find-and-replace-text-in-notepad/
+1. Removing arbitrary whitespaces and tabs
+2. Insert a newline for every line of text
+3. Removing blank lines
+4. Replace comma separated list with string list
+5. Remove duplicate words
+6. Replace with first word from each lines
+7. Replace with last word from each line
+8. Replace all duplicate lines with a single instance
+9. Insert all text into a single line
+10. Replace the first line in text
+11. Trim additional spaces from sentences
+12. Remove unwanted characters
+13. Convert string to lower case except for acronyms & abbreviations
+14. Remove trailing whitespaces from lines with text and empty lines
+15. Find & remove apostrophe from the middle of a word
+16. Remove all lines that contain a matching text
