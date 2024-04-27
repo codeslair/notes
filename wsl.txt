@@ -1,0 +1,29 @@
+1. List available online distro
+wsl --list --online
+
+2. List the version installed
+wsl --list --verbose
+
+3. Check ubuntu version
+note: open ubuntu terminal first
+lsb_release -a
+
+4. How to start the distro
+wsl --distribution [distro name]
+wsl --distribution Ubuntu-24.04
+
+5. To shutdown all distro
+wsl --shutdown
+
+6. To terminal specific instance of distro
+wsl --terminate [distro name]
+wsl --terminate Ubuntu
+
+7. Unregister
+wsl --unregister [distro name]
+wsl --unregister Ubuntu-22.04
+
+8. Rename distro
+HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss\[Target Distro]\DistributionName
+
+9. Create ubuntu user and set as default
