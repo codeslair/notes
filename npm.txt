@@ -1,0 +1,9 @@
+1. Set proxy password
+   npm config set proxy http://<username>:<password>@<proxy-server-url>:<port>
+   npm config set https-proxy http://<username>:<password>@<proxy-server-url>:<port>
+
+   Ex. npm config set proxy http://F500050284:ChangePasswordHere@202.15.153.251:8080
+
+Note: It is saved as plain text in %userprofile%\.npmrc
+
+2.
