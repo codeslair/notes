@@ -2,14 +2,21 @@
    dotnet --version
 2. Show all installed versions 
    dotnet --info
-3. List all workload
+3. Show all installed SDK
+   dotnet --list-sdks
+4. List all workload
    dotnet new list
-4. Create solution
-5. Add project to solution
+5. Install CLI for Entity Framework
+   dotnet tool install --global dotnet-ef
+6. Install Powershell
+   dotnet tool install --global powershell
+7. Location of global tools
+   %USERPROFILE%\.dotnet\tools
+8. Create solution
+   dotnet new sln -o [output.sln]
+9. Add project to solution
    dotnet sln add [path to project]
-6. Add another project as reference
+10. Add another project as reference
    dotnet add [destination project] reference [reference project]
-7. Install CLI for Entity Framework
-dotnet tool install --global dotnet-ef
-8. Install Powershell
-dotnet tool install --global powershell
+11. Add nuget package to a project
+   dotnet add [destination project] package [nuget package name]
