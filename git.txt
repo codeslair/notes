@@ -184,7 +184,15 @@ Git useful commands
     #!/bin/bash
 
     REPO_NAME="FluentCMS"
-    cd "$REPO_NAME" || exit
+    REPO_URL="https://github.com/fluentcms/FluentCMS.git"
+
+    # Clone the repo if it doesn't exist
+    if [ ! -d "$REPO_NAME" ]; then
+        echo "📥 Cloning repository..."
+        git clone "$REPO_URL" || { echo "❌ Failed to clone repo"; exit 1; }
+    fi
+
+    cd "$REPO_NAME" || { echo "❌ Could not enter repo directory"; exit 1; }
 
     # Load last commit if exists
     if [ -f "../last_commit.txt" ]; then
@@ -200,12 +208,10 @@ Git useful commands
                 SKIP=false
             fi
             continue
-         fi
+        fi
 
         git checkout "$commit"
         echo "$commit" > ../last_commit.txt
         echo "✅ Checked out to $commit"
         read -p "Press enter to continue..."
     done
-
-
