@@ -1,4 +1,4 @@
-Git usefull commands
+Git useful commands
 1. git show --pretty="" --name-only [commit id]
     list all the files in a commit
 2. git diff --cached [filename]
@@ -175,3 +175,37 @@ Git usefull commands
 39. Merge all changes from another branch as a single commit
     git merge --squash <feature branch>
     git commit -m "<message>"
+40. Commit by Commit: Reverse Engineering a GitHub Repository
+    Create a script file, walkthrough.sh
+        nano walkthrough.sh, paste, ctrl + O (save), ctrl + X (exit) 
+    chmod +x walkthrough.sh
+    ./walkthrough.sh
+
+    #!/bin/bash
+
+    REPO_NAME="FluentCMS"
+    cd "$REPO_NAME" || exit
+
+    # Load last commit if exists
+    if [ -f "../last_commit.txt" ]; then
+        LAST=$(cat ../last_commit.txt)
+        SKIP=true
+    else
+        SKIP=false
+    fi
+
+    for commit in $(git rev-list --reverse HEAD); do
+        if $SKIP; then
+            if [ "$commit" == "$LAST" ]; then
+                SKIP=false
+            fi
+            continue
+         fi
+
+        git checkout "$commit"
+        echo "$commit" > ../last_commit.txt
+        echo "✅ Checked out to $commit"
+        read -p "Press enter to continue..."
+    done
+
+
