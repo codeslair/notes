@@ -215,3 +215,61 @@ Git useful commands
         echo "✅ Checked out to $commit"
         read -p "Press enter to continue..."
     done
+    --- Batch file ---
+    @echo off
+    chcp 65001 >nul
+    setlocal enabledelayedexpansion
+
+    set "REPO_NAME=FluentCMS"
+    set "REPO_URL=https://github.com/fluentcms/FluentCMS.git"
+
+    REM Skip cloning if the repo already exists
+    if not exist "%REPO_NAME%" (
+        echo 📥 Cloning repository...
+        git clone "%REPO_URL%"
+        if errorlevel 1 (
+            echo ❌ Failed to clone repo
+            exit /b 1
+        )
+    )
+
+    cd "%REPO_NAME%" || (
+        echo ❌ Could not enter repo directory
+        exit /b 1
+    )
+
+    REM Load last commit if exists
+    set "SKIP=false"
+    if exist "..\last_commit.txt" (
+        for /f %%L in ('type "..\last_commit.txt"') do set "LAST=%%L"
+        set "SKIP=true"
+    )
+
+
+    echo LAST is %LAST%
+    for /f %%B in ('git symbolic-ref refs/remotes/origin/HEAD') do set "BRANCH=%%~nxB"
+    for /f %%C in ('git rev-list --reverse origin/!BRANCH!') do (
+
+        set "PROCESS=true"
+        if "!SKIP!"=="true" (
+            echo Comparing %%C with !LAST!
+            pause
+            if "%%C"=="!LAST!" (
+                echo yes equals
+                set "SKIP=false"
+            ) else (
+                set "PROCESS=false"
+                echo PROCESS is false
+                pause
+            )
+        )
+
+        if "!PROCESS!"=="true" (
+            git checkout %%C
+            echo %%C > "..\last_commit.txt"
+            echo ✅ Checked out to %%C
+            pause
+        )
+    )
+
+    endlocal
