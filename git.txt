@@ -252,15 +252,10 @@ Git useful commands
 
         set "PROCESS=true"
         if "!SKIP!"=="true" (
-            echo Comparing %%C with !LAST!
-            pause
             if "%%C"=="!LAST!" (
-                echo yes equals
                 set "SKIP=false"
             ) else (
                 set "PROCESS=false"
-                echo PROCESS is false
-                pause
             )
         )
 
