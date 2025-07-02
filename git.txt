@@ -4,7 +4,7 @@ Git useful commands
 2. git diff --cached [filename]
     show difference of staged file from the last commit
     *remove --cached if not yet staged
-3. Adding local repo to master #ref https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+3. Adding local repo to main #ref https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
    3.1. Create a new repository on GitHub. To avoid errors, do not initialize the new repository with README, license, or gitignore files. You can add these files after your project has been pushed to GitHub.
    3.2. Open Git Bash.
    3.3. Change the current working directory to your local project.
@@ -20,10 +20,10 @@ Git useful commands
         git remote -v
             *To verify the new remore URL
    3.9. Push the changes in your local repository to GitHub.
-        git push origin master
+        git push origin main
             *Pushes the changes in your local repository up to the remote repository you specified as the origin
 4. Updating a local repository with changes from a Github repository
-    git pull origin master
+    git pull origin main
 5. Remove uncommitted changes
     Tracked files: git checkout -f
         *Undo any changes on tracked files
@@ -38,7 +38,7 @@ Git useful commands
        (6)18dc8aa (HEAD -> Chapter3) Chapter3-Replace shopping basket with component. (page 78)
        (5)bff154a Chapter3-Set button class and button title based on parameter
        (4)420983d Chapter3-Replace menu with component. Introduce "StateHasChanged". (page 76)
-       (3)1e95b39 (master) Chapter 2: Data and Event Binding
+       (3)1e95b39 (main) Chapter 2: Data and Event Binding
        (2)fc87c04 Add project files.
        (1)ba51d21 Add .gitignore and .gitattributes.
 
@@ -53,10 +53,10 @@ Git useful commands
                 pick 420983d Chapter3-Replace menu with component. Introduce "StateHasChanged". (page 76)
                 squash bff154a Chapter3-Set button class and button title based on parameter
                 pick 18dc8aa Chapter3-Replace shopping basket with component. (page 78)
-7. Merge branch to master
-    (on branch development)$ git merge master
+7. Merge branch to main
+    (on branch development)$ git merge main
     (resolve any merge conflicts if there are any)
-    git checkout master
+    git checkout main
     git merge development (there won't be any conflicts now)
 8. Compare with previous commit
     git diff HEAD^ [path to file]
@@ -116,7 +116,7 @@ Git useful commands
           #git remote add upstream [Original/upstream url]
 29. Pull Request
     Create a pull request to propose and collaborate on changes to a repository.
-    These changes are proposed in a branch, which ensures that the master branch only contains finished and approved work.
+    These changes are proposed in a branch, which ensures that the main branch only contains finished and approved work.
     29.1. Choose the branch that contains your commits. 
     29.2. To the right of the Branch menu, click New pull request. 
     29.3. Use the base branch dropdown menu to select the branch you'd like to merge your changes into,
@@ -137,9 +137,9 @@ Git useful commands
     git clone <addr of repo> --config http.proxy= --config http.sslVerify=false
     git clone http://itmserv:3000/ITM-Department/ItmSolution.git --config http.proxy= --config http.sslVerify=false
 32. Visual Studio ignore file
-    https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
+    https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 33. Compare diff between file in local repo and origin
-    git diff origin/master -- [loca path]
+    git diff origin/main -- [loca path]
 
     To view the differences going from the remote file to the local file:
         git diff remotename/branchname:remote/path/file1.txt local/path/file1.txt
