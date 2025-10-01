@@ -1,0 +1,6 @@
+1. Install python
+   Download installer from https://www.python.org/downloads/.
+   Use v3.12.x if want to use tensorflow to study AI. See here https://www.tensorflow.org/install
+2. Show the path where active python is installed
+   python -c "import sys; print(sys.executable)"
+3. 
